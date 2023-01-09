@@ -1,0 +1,6 @@
+psycopg2-binary
+databases
+databases[postgresql]
+passlib
+python-jose
+aiohttp

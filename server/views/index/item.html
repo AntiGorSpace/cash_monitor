@@ -1,0 +1,75 @@
+{% extends "main/base.html" %}
+
+{% block body %}
+<div>
+	<div class = "user_auth">
+		{% if current_user_login %}
+		<div id = 'login'> {{ current_user_login }} </div>
+		<button onclick="user_auth.logout()">logout</button>
+		{% else %}
+		<input type = "text"     id = "auth_login">
+		<input type = "password" id = "auth_password">
+		<button onclick="user_auth.login()">login</button>
+		{% endif %}
+	</div>
+	<div class = "base_currency">
+		<select id = "base_currency">
+			{% for code in currency_codes %}
+				<option 
+					key = "{{ code }}" 
+					{% if code == base_code %} selected {% endif %}
+				>{{ code }}</option>
+			{% endfor %}
+		</select>
+	</div>
+	<div class = "currencies">
+		<select id = "currencies" multiple>
+			{% for code in currency_codes %}
+				<option 
+					key = "{{ code }}" 
+					{% if code in wallet_codes %} selected {% endif %}
+				>{{ code }}</option>
+			{% endfor %}
+		</select>
+	</div>
+	
+	<div class = "currency_history">
+		<canvas id = "currency_history" width="400px" height="400px"></canvas>
+	</div>
+	{% if current_user_login %}
+	<div id = "wallets">
+		<canvas id = "wallets_chart" width="400px" height="400px"></canvas>
+		<div class = "wallets_list" >
+			<div>Currency code</div>
+			<div>waller_name</div>
+			<div>value</div>
+			<div>value in base currency</div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<div class = "wallets_list" id = "wallets_list"></div>
+		<div class = "wallets_list">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div id ="total_base_value"></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<div id = "add_wallet">
+			<select name = "code">
+				{% for code in currency_codes %}
+				<option key = "{{ code }}" >{{ code }}</option>
+				{% endfor %}
+			</select>
+			<input name = "name">
+			<button onclick="wallets.add()">add</button>
+		</div>
+	</div>
+	{% endif %}
+
+</div>
+
+{% endblock %}
