@@ -4,3 +4,4 @@ databases[postgresql]
 passlib
 python-jose
 aiohttp
+fastapi_utils

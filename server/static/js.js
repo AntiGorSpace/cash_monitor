@@ -142,6 +142,7 @@ let wallets = {
 		)
 	},
 	del:function(wallet_id){
+		if (!confirm('are you shure?')) return;
 		majax.post(
 			'/api/personal_stat/del_wallet',
 			{

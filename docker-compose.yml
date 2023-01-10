@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 services:
   server:
     build: ./server
@@ -6,7 +6,7 @@ services:
     volumes:
       - ./server:/app
     ports:
-      - "3010:80"
+      - "3020:80"
     env_file: 
       - postgres.env
       - server.env
